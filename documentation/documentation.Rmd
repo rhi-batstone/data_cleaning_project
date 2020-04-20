@@ -1,6 +1,6 @@
 ---
-title: "Task 4 - HELLoween Candy"
-author: "Rhi"
+title: "Task 4 - Halloween Candy"
+author: "Rhi Batstone"
 output: html_document
 ---
 
