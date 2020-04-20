@@ -1,0 +1,8 @@
+"0","candy_data %>% 
+  group_by(candy) %>% 
+  filter(rating == ""joy"") %>% 
+  summarise(top_joy = n()) %>% 
+  top_n(1)
+"
+"2","Selecting by top_joy
+"

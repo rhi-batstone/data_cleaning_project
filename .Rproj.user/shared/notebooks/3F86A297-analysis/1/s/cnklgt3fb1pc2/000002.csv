@@ -1,0 +1,24 @@
+"0","candy_data <- read_csv(""../clean_data/candy_clean.csv"")"
+"2","Parsed with column specification:
+cols(
+  date = [34mcol_date(format = """")[39m,
+  time = [34mcol_time(format = """")[39m,
+  age = [32mcol_double()[39m,
+  candy = [31mcol_character()[39m,
+  rating = [31mcol_character()[39m,
+  going_out = [31mcol_character()[39m,
+  gender = [33mcol_logical()[39m,
+  country = [33mcol_logical()[39m,
+  going_t_or_t = [33mcol_logical()[39m
+)
+"
+"2","1060303 parsing failures.
+   row          col           expected actual                            file
+499796 gender       1/0/T/F/TRUE/FALSE Male   '../clean_data/candy_clean.csv'
+499796 country      1/0/T/F/TRUE/FALSE canada '../clean_data/candy_clean.csv'
+499796 going_t_or_t 1/0/T/F/TRUE/FALSE No     '../clean_data/candy_clean.csv'
+499797 gender       1/0/T/F/TRUE/FALSE Male   '../clean_data/candy_clean.csv'
+499797 country      1/0/T/F/TRUE/FALSE canada '../clean_data/candy_clean.csv'
+...... ............ .................. ...... ...............................
+See problems(...) for more details.
+"

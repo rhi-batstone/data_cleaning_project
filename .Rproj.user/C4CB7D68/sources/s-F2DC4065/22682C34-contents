@@ -1,0 +1,72 @@
+---
+title: "Analysis"
+author: "Rhi"
+date: "19/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+candy_data <- read_csv("../clean_data/candy_clean.csv")
+```
+
+Total number of candy ratings 
+```{r}
+candy_data %>%
+  filter(!is.na(rating)) %>%
+  summarise(num_candy_ratings = n())
+```
+
+Mean age of people going out and not going out
+```{r}
+candy_data %>% 
+  filter(!is.na(going_out)) %>% 
+  group_by(going_out) %>% 
+  summarise(mean_age = mean(age))
+```
+
+Top candy for each rating
+```{r}
+candy_data %>% 
+  group_by(candy) %>% 
+  filter(rating == "joy") %>% 
+  summarise(top_joy = n()) %>% 
+  top_n(1)
+
+candy_data %>% 
+  group_by(candy) %>% 
+  filter(rating == "despair") %>% 
+  summarise(top_despair = n()) %>% 
+  top_n(1)
+
+candy_data %>% 
+  group_by(candy) %>% 
+  filter(rating == "meh") %>% 
+  summarise(top_meh = n()) %>% 
+  top_n(1)
+
+```
+
+number of starbust despair ratings
+```{r}
+candy_data %>% 
+  filter((candy == "Starburst") & rating == "despair") %>% 
+  summarise(number_of_people_who_hate_starburst = n())
+```
+
+5.
+What was the most popular candy bar by this rating system for each gender in the dataset?
+```{r}
+candy_data %>%
+  unique(gender) %>% 
+  filter(rating == "joy") %>% 
+  summarise(n())
+```
+
