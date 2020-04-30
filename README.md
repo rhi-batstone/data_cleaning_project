@@ -9,13 +9,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-$ git clone https://github.com/rhi-batstone/data_cleaning_project
+`$ git clone https://github.com/rhi-batstone/data_cleaning_project`
 
 ## Running the tests
 
-The cleaning has already been run, and saved as a cleaned .csv but in cleaning_scripts/cleaning_script.R you will find the code for this. 
+The cleaning has already been run, and saved as a cleaned .csv but in `cleaning_scripts/cleaning_script.R` you will find the code for this. 
 
-The documentation/documentation.html details the process of cleaning and analysing this data.
+The `documentation/documentation.html` details the process of cleaning and analysing this data.
 
 
 
