@@ -1,5 +1,0 @@
-"0","candy_data %>%
-  unique(gender)
-"
-"2","Error in isFALSE(incomparables) : object 'gender' not found
-"

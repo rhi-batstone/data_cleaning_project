@@ -3,17 +3,17 @@ title: "Task 4 - Halloween Candy"
 author: "Rhi Batstone"
 output: html_document
 ---
-
 ```{r setup, include =FALSE}
  knitr::opts_chunk$set(echo = TRUE)
 ```
+This document details the cleaning process for answering some basic analysis questions
+
 
 # Cleaning
 
 ### Libraries & Reading in the data
 * Call the libraries for cleaning: *janitor*, *tidyverse* & *readxl*
-* Read in the xlsx and specfiying the sheet.  
-  + Separately called and cleaned each sheet.  
+* Read in the xlsx and specfiying the sheet
   
   
 ### Cleaning the data
@@ -23,17 +23,17 @@ output: html_document
 * Pivot longer to combine all the candy names  
   
 * I then did another pivot longer to join all the ***weird***  questions together but this resulted in **7.5m** objects and kept making <span style="color: red;">**R angry**</span>.
-![R Angry](session_aborted.png)  
+![R Angry](session_aborted.png)
 
-* Did not clean the candy names because I have a recurring issue that I just can't make it work.  
 * Separated date and time to make it more readable  
 * **Used janitor to clean names**  
 * Renamed the unecessarily long column names  
+* Ages and candy names cleaning took some work 
 * And finally selected only for the columns of interest in the analysis questions to remove all the messy unecessary columns  
 
 ### Combining and Writing CSV  
-* Decided to bind rows because there weren't any Primary of Foreign Keys that I could see (*not before trying to join unsuccessfully of course*)  
-* Write clean data as CSV ready for analysis ()
+* Bound rows together for the three years
+* Write clean data as CSV ready for analysis
 
 
 # Analysis
@@ -42,25 +42,23 @@ output: html_document
 • Call the libraries for cleaning: *tidyverse* & *here*
 ```{r, include=FALSE}
 library(tidyverse)
-library(here)
 ```
 
 • Read in the data 
 ```{r, include=FALSE}
-candy_data <- read_csv(here("clean_data/candy_clean.csv"))
+candy_data <- read_csv("../clean_data/candy_clean.csv")
 ```
 
 ### Q1  
-*What is the total number of candy ratings given across the three years. (number of candy ratings, not number of raters. Don’t count missing values)*
+*Total candy ratings?*
 ```{r}
 candy_data %>%
-  filter(!is.na(response)) %>%
+  filter(!is.na(rating)) %>%
   summarise(num_candy_ratings = n())
 ```
 
 ### Q2  
-*What was the average age of people who are going out trick or treating and the average age of people not going trick or treating?*  
-• This theoretically works fine, but because I couldn't clean up the age column effectively the average person going out is infinity old. 
+*Average age of trick or treaters and non trick or treaters*
 ```{r}
 candy_data %>% 
   drop_na(age) %>% 
@@ -69,39 +67,33 @@ candy_data %>%
 ```
 
 ### Q3  
-*For each of joy, despair and meh, which candy bar revived the most of these ratings?*  
-• Again, I couldn't clean up the candy bar names properly so they aren't tidy but it works! Although, I couldn't get it all to work as one line of code. 
+*Which candy had highest of each rating?*  
 ```{r}
 candy_data %>% 
   group_by(candy) %>% 
-  filter(response == "JOY") %>% 
+  filter(rating == "joy") %>% 
   summarise(top_joy = n()) %>% 
   top_n(1)
 
 candy_data %>% 
   group_by(candy) %>% 
-  filter(response == "DESPAIR") %>% 
+  filter(rating == "despair") %>% 
   summarise(top_despair = n()) %>% 
   top_n(1)
 
 candy_data %>% 
   group_by(candy) %>% 
-  filter(response == "MEH") %>% 
+  filter(rating == "meh") %>% 
   summarise(top_meh = n()) %>% 
   top_n(1)
 
-# candy_data %>% 
-#   group_by(response) %>% 
-#   summarise(top = n()) %>% 
-#   top_n(1, candy)
 ```
 
 ### Q4  
-*How many people rated Starburst as despair?*  
-• This one worked ok, but because I didn't clean the candy names I had to input both ways it was written
+*Total despair ratings for Starbursts??* 
 ```{r}
 candy_data %>% 
-  filter((candy == "[Starburst]" | candy == "Q6 | Starburst") & response == "DESPAIR") %>% 
+  filter(candy == "Starburst" & rating == "despair") %>% 
   summarise(number_of_people_who_hate_starburst = n())
 ```
 

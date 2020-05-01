@@ -1,3 +1,0 @@
-"0","candy_data %>% "
-"0","  filter((candy == ""Starburst"") & rating == ""despair"") %>% "
-"0","  summarise(number_of_people_who_hate_starburst = n())"

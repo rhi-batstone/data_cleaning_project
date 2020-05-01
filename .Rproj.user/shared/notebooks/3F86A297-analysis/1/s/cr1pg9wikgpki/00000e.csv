@@ -1,8 +1,0 @@
-"0",""
-"0","candy_data %>% "
-"0","  group_by(candy) %>% "
-"0","  filter(rating == ""despair"") %>% "
-"0","  summarise(top_despair = n()) %>% "
-"0","  top_n(1)"
-"2","Selecting by top_despair
-"
